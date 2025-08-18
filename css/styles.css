@@ -13,7 +13,9 @@ ul {
   padding: 0;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -38,6 +40,10 @@ h6 {
 
 address {
   font-style: normal;
+}
+
+a {
+  display: inline-block;
 }
 
 .visually-hidden {
@@ -218,19 +224,49 @@ address {
 }
 
 .chefs-title {
-  max-width: 520px;
+  position: relative;
   margin: 0 auto 80px;
 }
 
 .chefs-title::before,
 .chefs-title::after {
+  position: absolute;
   content: '';
-  display: block;
   width: 352px;
+  bottom: 24px;
   border: 2px solid var(--color-brand-light);
 }
 
+.chefs-title::before {
+  left: 0;
+}
+
+.chefs-title::after {
+  right: 0;
+}
+
+.chefs-list {
+  display: flex;
+  gap: 50px 30px;
+  flex-wrap: wrap;
+}
+
+.chefs-item {
+  flex-basis: calc((100% - 30px) / 2);
+}
+
+.chef-card {
+  display: flex;
+  gap: 30px;
+}
+
 /* Format section */
+
+.formats-container {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
 
 .formats-item {
   flex-basis: calc((100% - 40px) / 3);
@@ -275,6 +311,7 @@ address {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 44px;
   height: 44px;
   padding: 0;
@@ -289,10 +326,83 @@ address {
 }
 
 /* Contact section */
+.contacts-section {
+  padding-bottom: 96px;
+}
+
+.contact-container {
+  display: flex;
+  gap: 32px;
+}
+
 .contacts-title {
   margin-bottom: 16px;
 }
+
+.contact-map {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 16px;
+}
+
 /* footer */
+.footer {
+  padding: 32px 0;
+  position: relative;
+  background-image: url('../images/footer-background.png');
+  background-color: var(--color-primary-dark);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.footer::before,
+.footer::after {
+  position: absolute;
+  bottom: 0;
+  content: '';
+  background-repeat: no-repeat;
+}
+
+.footer::before {
+  width: 180px;
+  height: 120px;
+  background-image: url('../images/decor-bread-small.png');
+}
+
+.footer::after {
+  right: 0;
+  width: 380px;
+  height: 190px;
+  background-image: url('../images/decor-bread-large.png');
+}
+
+.footer-container {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-nav,
+.footer-address {
+  flex-basis: 50%;
+  display: flex;
+  gap: 20px;
+}
+
+.footer-logo,
+.footer-menu {
+  flex-grow: 1;
+}
+
+.address-list,
+.address-info {
+  flex-grow: 1;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 22px;
+}
 
 .address-link {
   font-size: 16px;
@@ -315,10 +425,35 @@ address {
   font-size: 14px;
 }
 
-.footer {
-  background-image: url('../images/footer-background.png');
-  background-color: var(--color-primary-dark);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+/* Modal */
+.backdrop {
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  position: relative;
+  width: 880px;
+  height: 880px;
+  background-color: var(--color-primary-light);
+  border-radius: 32px;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.modal-btn-close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
 }
