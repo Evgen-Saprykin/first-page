@@ -1,0 +1,14 @@
+.chefs-list {
+  display: flex;
+  gap: 50px 30px;
+  flex-wrap: wrap;
+}
+
+.chefs-item {
+  flex-basis: calc((100% - 30px) / 2);
+}
+
+.chef-card {
+  display: flex;
+  gap: 30px;
+}
